@@ -3,6 +3,7 @@
 ## Checklist
 
 * [ ] [Understand the access patterns](#access)
+* [ ] [Choose a type of data storage](#type)
 * [ ] [Choose between On-premises vs Cloud](#choose-serverless)
 * [ ] [Define Volume of Data To Store](#volume)
 * [ ] [Define Performance & High Availability (HA) Model](#ha)
@@ -24,6 +25,21 @@ Define the Type of workload / business problem:
 - partition tolerance…
 
 Ensure that you keep a linear scalability.
+
+## Choose a type of data storage <a name="type" />
+
+### OLTP
+
+| Main Data Models | Implementation | Design Choice | Performance | Schema Flexibility | Relation Management | Examples |
+|---|---|---|---|---|---|---|
+| Document | NoSQL | when data has a document-like structure (tree, implicit), heterogeneous data structure | Single query can retrieve all information, Depends on size of document | schema-on-read (interpreted when read) | Only way is to use Reference IDs, weak references | MongoDB, AWS DynamoDB, etc. |
+| Relational | RDBMS | when data has many-to-one, many-to-many relationships,  makes it easy to add features | Query optimiser decides which parts of the query to execute (order and indexes) | schema-on-write (interpreted when written) | Strong references on FK | SQL Server, MySQL, Postgres, etc. |
+| Graph | Graph DB | when data is highly interconnected, plenty of N-to-N, Relational++ | All Search Algos for Graph apply; recursive relationships are still possible but more complex queries || All is vertices (nodes/entities) and egdes (relationships/arcs) | Neo4j, Amazon Neptune, etc. |
+| Full text search | | | | | | Elasticsearch |
+
+### OLAP
+
+* Data Warehouse
 
 ## Choose between On-premises vs Cloud <a name="choose-serverless" />
 
